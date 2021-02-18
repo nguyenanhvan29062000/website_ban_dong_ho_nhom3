@@ -17,6 +17,9 @@ Route::get('/', function () {
     return view('trangchu');
 });
 
-Route::get('/gioi-thieu', function () {
+Route::get('/gioi-thieu', 'PagesController@getGioithieu');
+
+Route::get('/dangnhaptaikhoan', function () {
     return view('gioithieu');
 });
+Route::post('login', 'PagesController@login')->name('login');
