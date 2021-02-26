@@ -12,15 +12,29 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', 'PagesController@index');
-Route::get('/home', function () {
-    return view('trangchu');
+//GET
+Route::get('/', function () {
+    return redirect('/home');
 });
-
-
-Route::get('/gioi-thieu', 'PagesController@getGioithieu');
-
-Route::get('/dangnhaptaikhoan', function () {
+Route::get('/home', 'PagesController@home');
+Route::get('/home/gioithieu', function()
+{
     return view('gioithieu');
 });
+Route::get('/home/dongho/{gender}', function($gender){
+    if($gender=='nam'||$gender=='nu') return view('dongho', compact('gender'));
+    else abort(404);
+});
+Route::get('/dongho/{id}/chitiet', function ($id) {
+    return view('chitetsanpham', compact('id'));
+});
+Route::get('/home/dongho/timkiem', function () {
+    return view('timkiem');
+});
+Route::get('/{id}/giohang', function ($id) {
+    return view('giohang', compact('id'));
+});
+Route::get('/logout', 'PagesController@logout');
+//POST
 Route::post('login', 'PagesController@login');
+Route::post('signup', 'PagesController@signup');
