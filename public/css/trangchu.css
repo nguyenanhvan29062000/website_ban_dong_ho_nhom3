@@ -1,4 +1,14 @@
+.main-container{
+    padding: 0 19%;
+}
+#carousel1
+{
+    width: 102%;
+    margin-left: -1%;
+    
+}
 .item-slides{
+    border-radius: 10px;
     width: 100%;
     height: 415px;
     background-repeat: no-repeat;
@@ -18,8 +28,16 @@
     padding-top: 10vh;
     padding-left: 10%;
 }
-.card-carousel h1{
+.card-carousel-col2{
+    width: 100%;
+    padding-top: 10vh;
+    padding-left: 10%;
+}
+.card-carousel h1, .card-carousel-col2 h1{
     font-weight: bold;
+}
+.card-carousel-col2 h1{
+    
 }
 #btn_xemthem_carousel:hover{
     background-color: #b78a62;
@@ -35,10 +53,10 @@
     padding: 7px 14px;
     border: none;
     font-weight: bold;
+    color: white;
 }
 .sp_btn_buy:hover{
     background-color: #b7b7b7;
-
     border: none;
 }
 .sp_gia{
@@ -47,8 +65,89 @@
 .sp_title{
     font-weight: bold;
 }
+.parent-sp{
+    margin-left: 2%;
+}
+.sp_card{
+    width: 22%;
+    margin-left: 2%;
+    margin-bottom: 20px;
+}
+.carousel-cell {
+    width: 100%;
+}
+.next-btn{
+    color: #b78a62;
+    font-size: 48px;
+    margin-left: 10px;
+    border-radius: 200px;
+}
+.next-btn:hover{
+    color: darkgray;
+    font-size: 68px;
+    margin-left: 0;
+    margin-top: -10px;
+}
+.next-btn-r{
+    color: #b78a62;
+    font-size: 48px;
+    margin-right: 10px;
+    border-radius: 200px;
+}
+.next-btn-r:hover{
+    color: darkgray;
+    font-size: 68px;
+    margin-right: 0;
+    margin-top: -10px;
+}
+#xutheleft{
+    background-image: url(../images/trend-1.jpg);
+    width: 101%;
+    margin-left: -2%;
+    background-position: center right;
+}
+#xutheleft:hover{
+    width: 111%;
+    height: 110%;
+    margin-left: -5%;
+    margin-top: -3.5%;
+}
+#xutheright:hover{
+    width: 111%;
+    height: 110%;
+    margin-top: -3.5%;
+    margin-left: -5%;
+}
+
+#xutheright{
+    background-image: url(../images/trend-2.jpg);
+    width: 101%;
+    margin-left: 1%;
+    background-position: center center;
+}
+@media screen and (max-width: 1600px)
+{
+    .main-container{
+        padding: 0 10%;
+    }
+}
 @media screen and (max-width: 1280px)
 {
+    #xutheleft{
+        width: 106%;
+        margin-left: -3%;
+    }
+    #xutheright{
+        margin-top: 30px;
+        width: 106%;
+        margin-left: -3%;
+    }
+}
+@media screen and (max-width: 1000px)
+{
+    .main-container{
+        padding: 0;
+    }
     .item-slides{
         height: 290px;
     }
@@ -60,5 +159,35 @@
         width: 90%;
         padding-top: 20px;
         padding-left: 5%;
+    }
+    .card-carousel-col2{
+        width: 100%;
+        padding-top: 5vh;
+        padding-left: 10%;
+    }
+    .container-item{
+        margin-top: 0px;
+    }
+    .sp_card{
+        width: 46%;
+        margin-bottom: 20px;
+    }
+    .pages-body {
+        margin-top: 50px;
+    }
+    .next-btn, .next-btn-r{
+        display: none;
+    }
+    .flickity-button{
+        display: none;
+    }
+    #xutheleft{
+        width: 106%;
+        margin-left: -3%;
+    }
+    #xutheright{
+        margin-top: 10px;
+        width: 106%;
+        margin-left: -3%;
     }
 }

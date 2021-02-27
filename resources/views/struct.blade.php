@@ -12,10 +12,8 @@
     <link rel="stylesheet" href="{{ asset('/css/struct.css') }}">
     @yield('addcss')
 </head>
-<body style="background-color:#EAEAEA">
-<div class="nav-bar bg-dark" style="box-shadow: 0 2px 0 #b78a62">
-  
-
+<body style="background-color:#EAEAEA;">
+<div class="nav-bar" style="box-shadow: 0 2px 0 #b78a62; background-color: #222222">
   <div class="container">
     <div class="row"><div class="col-4 pl-0"><div id="locate" class="nav-link disabled"><i class="fas fa-map-marker-alt"></i><span class="font-italic">92A - Lê Thanh Nghị, Hai Bà Trưng, Hà Nội</span></div></div>
     <div class="d-flex justify-content-end col-8 pr-0">
@@ -40,7 +38,7 @@
     </div>
   </div>
   <hr style="width: 100%; margin: 0px; box-shadow: 0 0.2px 0 lightgrey;" />
-  <div class="bg-dark container" style="position: relative">
+  <div class="container" style="position: relative">
     
       <a style="position: absolute; top: 30px; right: 30px; z-index: 999 ; " @if(!empty(Cookie::get('name'))) href="{{url('/'.Cookie::get('name').'/giohang')}}" @else href="#" @endif title="Giỏ hàng">
         <i style="position: relative" id="carticon" class="fas fa-cart-plus">
@@ -70,7 +68,7 @@
     <ul class="nav">
       <li class="nav-item align-self-lg-center btn-block">
         <div class="s002">
-          <img src="{!! asset('/images/logo-mona-2.png') !!}" alt="" height="72px">
+          <img src="{!! asset('/images/logo-mona-2.png') !!}" alt="" height="150px">
         </div>
       </li>
       <li class="nav-item btn-block">
@@ -90,7 +88,7 @@
     </ul>
   </div>
 
-  <div class="bg-dark container p-0">
+  <div class="container p-0">
       <hr style="width:100%; margin: 0px; box-shadow: 0 0.2px 0 #b78a62;"/>
         <div class="d-flex justify-content-center">
           <nav class="navbar navbar-expand-xl">
@@ -152,7 +150,7 @@
   </div>
   <div class="modal fade" id="signin" role="dialog">
       <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content bg-dark text-light">
+        <div class="modal-content text-light bg-dark">
           <div class="modal-header">
           
           <h4 class="modal-title">Đăng nhập tài khoản</h4>
@@ -183,7 +181,7 @@
   </div>
   <div class="modal fade" id="signup" role="dialog">
     <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content bg-dark text-light">
+      <div class="modal-content text-light bg-dark">
         <div class="modal-header">
         
         <h4 class="modal-title">Đăng ký tài khoản</h4>
@@ -209,10 +207,10 @@
       </div>
     </div>
 </div>
-</div>
 @yield('content')
-<div class="footer bg-dark">
-  <div class="container bg-dark" style="padding-top: 50px">
+<hr style="box-shadow: 0 2px 0 #b78a62; width: 100%"">
+<div class="footer">
+  <div class="container" style="padding-top: 50px">
     <div class="row">
       <div class="col-sm-3 m-0 p-0">
         <ul class="ulfooter">
