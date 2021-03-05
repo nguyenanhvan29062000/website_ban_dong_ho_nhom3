@@ -16,6 +16,7 @@ class Banhang extends Migration
         //
         Schema::create('tgiohang', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name', 15);
             $table->bigInteger('id_sp')->unique();
             $table->integer('so_luong');
             $table->timestamps();

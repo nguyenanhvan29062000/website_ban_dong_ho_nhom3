@@ -9,7 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="{{ asset('/css/struct.css') }}">
+    <link id='struct' rel="stylesheet" href="{{ asset('/css/struct.css') }}">
     @yield('addcss')
 </head>
 <body style="background-color:#EAEAEA;">
@@ -112,19 +112,19 @@
               <div class="collapse navbar-collapse" id="collapnavbar">
                   <ul class="navbar-nav">
                   <li class="nav-item navbar-brand d-flex justify-content-center">
-                    <a id="homepage" class="nav-link" href="/home">TRANG CHỦ</a>
+                    <a id="homepage" class="nav-link" href="{{url('/home')}}">TRANG CHỦ</a>
                   </li>
                   <li class="nav-item navbar-brand d-flex justify-content-center">
-                      <a id="gioithieupage" class="nav-link" href="/home/gioithieu">GIỚI THIỆU</a>
+                      <a id="gioithieupage" class="nav-link" href="{{url('/home/gioithieu')}}">GIỚI THIỆU</a>
                   </li>
                   <li class="nav-item navbar-brand d-flex justify-content-center">
-                      <a id="dhnampage" class="nav-link" href="/home/dongho/nam">ĐỒNG HỒ NAM</a>
+                      <a id="dhnampage" class="nav-link" href="{{url('/home/dongho/nam')}}">ĐỒNG HỒ NAM</a>
                   </li>
                   <li class="nav-item navbar-brand d-flex justify-content-center">
-                      <a id="dhnupage" class="nav-link" href="/home/dongho/nu">ĐỒNG HỒ NỮ</a>
+                      <a id="dhnupage" class="nav-link" href="{{url('/home/dongho/nu')}}">ĐỒNG HỒ NỮ</a>
                   </li>
                   <li class="nav-item navbar-brand d-flex justify-content-center">
-                    <a id="lienhepage" class="nav-link" href="/home/lienhe">LIÊN HỆ</a>
+                    <a id="lienhepage" class="nav-link" href="{{url('/home/lienhe')}}">LIÊN HỆ</a>
                   </li>
                   <li class="nav-item navbar-brand d-flex justify-content-center">
                     <button id="btnNavCollup" class="navbar-toggler" data-toggle="collapse" data-target="#collapnavbar">
@@ -145,8 +145,7 @@
             </ul>
         </div>
       </nav>
-      </div>
-        
+      </div>  
   </div>
   <div class="modal fade" id="signin" role="dialog">
       <div class="modal-dialog modal-dialog-centered">

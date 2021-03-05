@@ -7,7 +7,7 @@ use Auth;
 use DB;
 use Cookie;
 //use Hash;
-//use Crypt;
+use Crypt;
 class PagesController extends Controller
 {
     //
@@ -64,15 +64,21 @@ class PagesController extends Controller
 
     public function home()
     {
-        
-        //$carosel = DB::table('thomecarosel')->get();
-        //$hot = DB::table('thomehot')->get();
-        //$banchay = DB::table('thomebanchay')->get();
-        //$khuyenmai = DB::table('thomekhuyenmai')->get();
-        //$moi = DB::table('thommoi')->get();
-        //$baiviet = DB::table('tbaiviet')->orderBy('id', 'desc')->take(3)->get();
+        $sanphamhot = DB::table('thomehot')->get();
+        $sanphamnew = DB::table('thomenew')->get();
+        $sanphamsale = DB::table('thomesale')->get();
+        return view('trangchu', compact('sanphamhot', 'sanphamnew', 'sanphamsale'));
+    }
 
-        //return view('home', compact('carosel', 'hot', 'banchay', 'khuyenmai', 'moi', 'baiviet'));
-        return view('trangchu');
+    public function giohang(Request $request)
+    {
+        $tenngdung = $request->route('id');
+        $giohang = DB::select('select * from tgiohang where name = ?', $tenngdung);
+        $sanpham = array();
+        for($i = 0; $i < count($giohang); $i++)
+        {
+            $sanpham[$i] = DB::select('select * from tsanpham where id_sp = ?', [$giohang[$i]->id_sp]);
+        }
+        return view('giohang', compact('giohang', 'sanpham'));
     }
 }
