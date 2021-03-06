@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href=" {{ asset('/css/style.css') }} ">
 </head>
 <body>
 	<!-- header -->
@@ -39,7 +39,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-4 logo p-3">
-						<h1><a href=""><img width="180" src="./images/logo.png" alt="logo"></a></h1>
+						<h1><a href=""><img width="180" src="{{ asset('/images/logo.png') }}" alt="logo"></a></h1>
 					</div>
 					<div class="col-md-6 search d-flex align-items-center">
 						<input type="text" placeholder="Tìm kiếm...">
@@ -99,7 +99,7 @@
 					<div class="row">
 						<div class="col-md-4">
 							<div class="d-flex">
-								<div style="margin-right: 16px"><img src="./images/icon-address.png" ></div>
+								<div style="margin-right: 16px"><img src="{{ asset('/images/icon-address.png') }}" ></div>
 								<div class="contact-right">
 									<h3>Địa chỉ:</h3>
 									<p>319 C16 Lý Thường Kiệt, Phường 15, Quận 11, Tp.HCM</p>
@@ -108,7 +108,7 @@
 						</div>
 						<div class="col-md-4">
 							<div class="d-flex">
-								<div style="margin-right: 16px"><img src="./images/icon-address.png" ></div>
+								<div style="margin-right: 16px"><img src="{{ asset('/images/icon-address.png') }}" ></div>
 								<div class="contact-right">
 									<h3>Điện thoại:</h3>
 									<h4>1900 636 648</h4>
@@ -120,7 +120,7 @@
 
 						<div class="col-md-4">
 							<div class="d-flex">
-								<div style="margin-right: 16px"><img src="./images/icon-address.png" ></div>
+								<div style="margin-right: 16px"><img src="{{ asset('/images/icon-address.png') }}" ></div>
 								<div class="contact-right">
 									<h3>Email:</h3>
 									<p>demonhunterg@gmail.com</p>
@@ -365,8 +365,8 @@
 						<div class="col-md-3">
 							<h3>TẢI ỨNG DỤNG TRÊN</h3>
 							<p>Ứng dụng Mona Watch hiện có sẵn trên Google Play & App Store. Tải nó ngay</p>
-							<img class="mb-2" src="./images/img-googleplay.jpg" alt="">
-							<img src="./images/img-appstore.jpg" alt="">
+							<img class="mb-2" src="{{ asset('/images/img-googleplay.jpg') }}" alt="">
+							<img src="{{ asset('/images/img-appstore.jpg') }}" alt="">
 						</div>
 					</div>
 				</div>
@@ -379,7 +379,7 @@
 							<p>© Bản quyền thuộc về . Thiết kế website MonaMedia Mona Media</p>
 						</div>
 						<div class="col-md-6">
-							<img src="./images/img-payment.png" alt="">
+							<img src="{{ asset('/images/img-payment.png') }}" alt="">
 						</div>
 					</div>
 				</div>
