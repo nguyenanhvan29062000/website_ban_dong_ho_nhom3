@@ -76,6 +76,7 @@ class PagesController extends Controller
             }
             setcookie('sumcart', $sumcart);
         }
+        else setcookie('sumcart', 0);
     }
     public function home()
     {
