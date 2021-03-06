@@ -74,9 +74,9 @@ class PagesController extends Controller
             {
                 $sumcart += $value->so_luong;
             }
-            setcookie('sumcart', $sumcart);
+            setcookie('sumcart', $sumcart, time()+3600*24, '/');
         }
-        else setcookie('sumcart', 0);
+        else setcookie('sumcart', 0, time()+3600*24, '/');
     }
     public function home()
     {
@@ -90,7 +90,8 @@ class PagesController extends Controller
 
     public function giohang(Request $request)
     {
-        $tenngdung = $request->route('id');
+        $this->checkcart();
+        $tenngdung = Cookie::get('name');
         $giohang = DB::select('select * from tgiohang where name = ?', [$tenngdung]);
         $sanpham = array();
         for($i = 0; $i < count($giohang); $i++)
@@ -110,7 +111,7 @@ class PagesController extends Controller
         else
         {
             $first = substr($value, 0, strlen($value)-6);
-            $second = substr($value, strlen($value)-6, strlen($value)-3);
+            $second = substr($value, strlen($value)-6, 3);
             $last = substr($value, strlen($value)-3);
             return $first.'.'.$second.'.'.$last;
         }

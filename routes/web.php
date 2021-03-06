@@ -31,7 +31,11 @@ Route::get('/dongho/{id}/chitiet', function ($id) {
 Route::get('/home/dongho/timkiem', function () {
     return view('timkiem');
 });
-Route::get('/{id}/giohang', 'PagesController@giohang');
+Route::get('/home/lienhe', function()
+{
+    return view('lienhe');
+});
+Route::get('/home/giohang', 'PagesController@giohang');
 Route::get('/logout', 'PagesController@logout');
 //POST
 Route::post('login', 'PagesController@login');

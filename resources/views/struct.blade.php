@@ -53,7 +53,7 @@
   <hr style="width: 100%; margin: 0px; box-shadow: 0 0.2px 0 lightgrey;" />
   <div class="container" style="position: relative">
     
-      <a style="position: absolute; top: 30px; right: 30px; z-index: 999 ; " @if(!empty(Cookie::get('name'))) href="{{url('/'.Cookie::get('name').'/giohang')}}" @else href="#" @endif title="Giỏ hàng">
+      <a style="position: absolute; top: 30px; right: 30px; z-index: 999 ; " @if(!empty(Cookie::get('name'))) href="{{url('/home/giohang')}}" @else href="#" @endif title="Giỏ hàng">
         <i style="position: relative" id="carticon" class="fas fa-cart-plus">
           
           <span style="font-size: 16px;width: 20px; height: 20px; text-align: center; line-height: 16px; background-color: #b78a62; border: white solid 1px ;border-radius: 32px;position: absolute; top: -1px; right: -4px;: 0;" id="cartbuy"></span>
@@ -234,10 +234,10 @@
       <div class="col-sm-3 m-0 p-0">
         <ul class="ulfooter">
           <li class=""><h5>THÔNG TIN LIÊN HỆ</h5></li>
-          <li><span>92A - Lê Thanh Nghị, Hai Bà Trưng, Hà Nội</span></li>
-          <li><span>0926716223</span></li>
-          <li><span>laptrinhmaytinh3@gmail.com</span></li>
-          <li><span>donghoso3</span></li>
+          <li><i class="fas fa-map-marked-alt"></i>&emsp;<span>92A - Lê Thanh Nghị, Hai Bà Trưng, Hà Nội</span></li>
+          <li><i class="fas fa-blender-phone"></i>&emsp;<span>0926716223</span></li>
+          <li><i class="far fa-envelope"></i>&emsp;<span>laptrinhmaytinh3@gmail.com</span></li>
+          <li><i class="fab fa-facebook-f"></i>&emsp;<span>donghoso3</span></li>
         </ul>
       </div>
       <div class="col-sm-3 m-0 p-0">
@@ -260,9 +260,7 @@
       </div>
       <div class="col-sm-3 m-0 p-0">
         <ul class="ulfooter">
-          <li class=""><h5>TẢI ỨNG DỤNG TRÊN</h5></li>
-          <li><span>Ứng dụng donghosoDOTga hiện có sẵn trên Google Play & App Store. Tải nó ngay.</span></li>
-          <li><span>Hướng dẫn thanh toán</span></li>
+          <li class=""><h5>CHÍNH SÁCH</h5></li>
           <li><span>Chính sách bảo hành</span></li>
           <li><span>Chính sách đổi trả</span></li>
         </ul>

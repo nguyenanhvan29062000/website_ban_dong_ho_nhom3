@@ -53,15 +53,26 @@
                 </div>
                 <script>
                     $(document).ready(function(){
+                        
                         $('.delbtn').click(function(){
+                            var d="";
+                            var id = $(this).attr('id');
                             $.post(
                                 "{{url('/home/delgiohang')}}",
                                 {
                                     "id": $(this).attr('id'),
                                     "_token": "{{ csrf_token() }}"
                                 }
-                            );
-                            $(this).parent().remove();
+                            ).done(function(data){
+                                d=data;
+                            });
+                            if(d!==undefined)
+                            {
+                                var value = parseInt($('#cartbuy').text())-parseInt($('#ghsoluong[masp="'+id+'"]').text());
+                                $('#cartbuy').text(value);
+                                $(this).parent().remove();
+                            }
+                            
                         });
                         $('.fa-caret-left').click(function(){
                             var id = $(this).attr('id');
@@ -74,8 +85,10 @@
                                         "id": id,
                                         "soluong": parseInt($('#ghsoluong[masp="'+id+'"]').text())
                                     }
-                                );
-                                $('#ghsoluong[masp="'+id+'"]').text(parseInt($('#ghsoluong[masp="'+id+'"]').text())-1);
+                                ).done(function(){
+                                    $('#ghsoluong[masp="'+id+'"]').text(parseInt($('#ghsoluong[masp="'+id+'"]').text())-1);
+                                });
+                                $('#cartbuy').text(parseInt($('#cartbuy').text())-1);
                             }
                         });
                         $('.fa-caret-right').click(function(){
@@ -87,8 +100,11 @@
                                     "id": id,
                                     "soluong": parseInt($('#ghsoluong[masp="'+id+'"]').text())
                                 }
-                            );
-                            $('#ghsoluong[masp="'+id+'"]').text(parseInt($('#ghsoluong[masp="'+id+'"]').text())+1);
+                            ).done(function(){
+                                $('#ghsoluong[masp="'+id+'"]').text(parseInt($('#ghsoluong[masp="'+id+'"]').text())+1);
+                                $('#cartbuy').text(parseInt($('#cartbuy').text())+1);
+                            });
+                            
                         });
                     });
                 </script>

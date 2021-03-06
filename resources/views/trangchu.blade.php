@@ -37,7 +37,13 @@
           </div>
         </div>
         <div class="carousel-cell">
-          <div id="slide2" class="item-slides"></div>
+          <div id="slide2" class="item-slides">
+            <div class="bg-transparent card-carousel">
+              <h1 class="card-title text-white">Đồng hồ  thông minh A Watch</h1>
+              <span class="card-text text-white">Đồng hồ thông minh sử dụng công nghệ 3na1no lần đầu tiên ra mắt thị trường, với thiết kế sang chảnh phù hợp với mọi lứa tuổi, mọi giới tính, và đặc biệt là những tính năng thông minh mà nó mang lại...</span>
+              <br><br><button id="btn_xemthem_carousel" type="button" class="btn btn-outline-light  text-white">XEM SẢN PHẨM</button>
+            </div>  
+          </div>
         </div>
         @endif
     </div>
@@ -79,31 +85,6 @@
                         </p>
                       @endif
                         <button class="sp_btn_buy" id="{{$sanphamhot[$j]->id_sp}}">MUA NGAY</button>
-                        <script>
-                          $(document).ready(function(){
-                            var buttonBuy = $('.sp_btn_buy');
-                            buttonBuy.click(function(){
-                              var id = buttonBuy.attr('id');
-                              var d="";
-                              $.post(
-                                "{{url('/buy')}}"+ "/" + id,
-                                {
-                                  "_token": "{{ csrf_token() }}"
-                                }
-                              ).done(function(data){
-                                d = data;
-                                $(".alert-success").fadeTo(1000, 500).fadeOut();
-                                var sumcart = $('#cartbuy').text();
-                                $('#cartbuy').text((parseInt(sumcart) + 1));
-                              });
-
-                              if(d==undefined)
-                                {
-                                  $(".alert-danger").fadeTo(1000, 500).fadeOut();
-                                }
-                            });
-                          });
-                        </script>
                     </div>
                   </div>
                 @endfor
@@ -111,6 +92,30 @@
             @endif
           @endfor
         @endif
+        <script>
+          $(document).ready(function(){
+            $('.sp_btn_buy').click(function(){
+              var id = $(this).attr('id');
+              var d="";
+              $.post(
+                "{{url('/buy')}}"+ "/" + id,
+                {
+                  "_token": "{{ csrf_token() }}"
+                }
+              ).done(function(data){
+                d = data;
+                $(".alert-success").fadeTo(1000, 500).fadeOut();
+                var sumcart = $('#cartbuy').text();
+                $('#cartbuy').text((parseInt(sumcart) + 1));
+              });
+
+              if(d==undefined)
+                {
+                  $(".alert-danger").fadeTo(1000, 500).fadeOut();
+                }
+            });
+          });
+        </script>
       </div>
       <a id="hotleft" href="#prev" style="position: absolute; top: 30%">
         <i class="fas fa-chevron-circle-left next-btn shadow"></i>
@@ -146,7 +151,11 @@
       </div>
       <div class="col-sm-6 p-0">
         <div id="xutheright" class="item-slides shadow-lg">
-
+          <div class="bg-transparent card-carousel-col2">
+            <h1 class="card-title text-white">XU THẾ 2021</h1>
+            <span class="card-text text-white">Đồng hồ thông minh sử dụng công nghệ 3na1no lần đầu tiên ra mắt thị trường, với thiết kế sang chảnh phù hợp với mọi lứa tuổi, mọi giới tính, và đặc biệt là những tính năng thông minh mà nó mang lại...</span>
+            <br><br><button id="btn_xemthem_carousel" type="button" class="btn btn-outline-light  text-white">XEM NGAY</button>
+          </div>
         </div>
       </div>
     </div>
@@ -191,7 +200,7 @@
                     @endif
                     <div class="card-footer text-center">
                       <h6 class="card-title font-weight-bold">{{$sanphamnew[$j]->ten_sp}}</h6>
-                      @if ($sanphamhot[$j]->gia_sau_sale != NULL)
+                      @if ($sanphamnew[$j]->gia_sau_sale != NULL)
                         <p class="sp_gia font-weight-normal text-dark">
                           <del>
                               {{$Pages->maskmonney($sanphamnew[$j]->gia_sp)}}₫
@@ -207,7 +216,7 @@
                           </span>
                         </p>
                       @endif
-                      <button class="sp_btn_buy ">MUA NGAY</button>
+                      <button class="sp_btn_buy" id="{{$sanphamhot[$j]->id_sp}}">MUA NGAY</button>
                     </div>
                   </div>
                 @endfor
@@ -266,7 +275,7 @@
                         </span>
                       </p>
                       @endif
-                      <button class="sp_btn_buy ">MUA NGAY</button>
+                      <button class="sp_btn_buy" id="{{$sanphamhot[$j]->id_sp}}">MUA NGAY</button>
                     </div>
                   </div>
                 @endfor
@@ -299,17 +308,17 @@
       <div id="baiviet_div" class="position-relative">
         @for ($j = 0; $j < 3 && $j < count($baiviet); $j++)
         @if($j!=2)
-          <div id="baiviet_cell" class="position-relative float-left shadow" style="background-image: url({!!asset('/images/'.$baiviet[$j]->hinhanh_demo)!!})">
+          <div id="baiviet_cell" class="position-relative float-left shadow" style="border-radius: 10px ;background-image: url({!!asset('/images/'.$baiviet[$j]->hinhanh_demo)!!})">
             <div id="baiviet_cell_text">
-              <span>{{$baiviet[$j]->tieude}}</span>
-              <br><br><button id="btn_xemthem_carousel" type="button" class="btn btn-outline-light  text-white position-absolute" style="bottom: 10%; left: 10%">Đọc bài viết...</button>
+              <span style="font-size: 20px; font-weight: bold">{{$baiviet[$j]->tieude}}</span>
+              <br><br><button type="button" class="btn btn-danger  text-white position-absolute" style="bottom: 10%; left: 10%">Đọc bài viết...</button>
             </div>
           </div>
         @else
-        <div id="baiviet_cell_last" class="position-relative float-left shadow" style="background-image: url({!!asset('/images/'.$baiviet[$j]->hinhanh_demo)!!})">
+        <div id="baiviet_cell_last" class="position-relative float-left shadow" style="border-radius: 10px ;background-image: url({!!asset('/images/'.$baiviet[$j]->hinhanh_demo)!!})">
           <div id="baiviet_cell_text">
-            <span>{{$baiviet[$j]->tieude}}</span>
-            <br><br><button id="btn_xemthem_carousel" type="button" class="btn btn-outline-light  text-white position-absolute" style="bottom: 10%; left: 10%">Đọc bài viết...</button>
+            <span style="font-size: 20px; font-weight: bold">{{$baiviet[$j]->tieude}}</span>
+            <br><br><button  type="button" class="btn btn-danger  text-white position-absolute" style="bottom: 10%; left: 10%">Đọc bài viết...</button>
           </div>
         </div>
         @endif
