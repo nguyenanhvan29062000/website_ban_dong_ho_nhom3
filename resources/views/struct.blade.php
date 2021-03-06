@@ -1,3 +1,4 @@
+@inject('Pages', 'App\Http\Controllers\PagesController')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,6 +14,18 @@
     @yield('addcss')
 </head>
 <body style="background-color:#EAEAEA;">
+<div class="spinner d-flex justify-content-center fade show">
+  <div class="spinner-border text-warning position-relative" style="width: 5rem; height: 5rem;">
+    <div class="spinner-grow spinner-grow-sm text-danger position-absolute" style="width: 4.5rem; height: 4.5rem; top:0; left: 0;"></div>
+  </div>
+</div>
+<script>
+  $(document).ready(function(){
+    var spinner = $('.spinner');
+    spinner.removeClass("show");
+    spinner.css("z-index", "-9999")
+  });
+</script>
 <div class="nav-bar" style="box-shadow: 0 2px 0 #b78a62; background-color: #222222">
   <div class="container">
     <div class="row"><div class="col-4 pl-0"><div id="locate" class="nav-link disabled"><i class="fas fa-map-marker-alt"></i><span class="font-italic">92A - Lê Thanh Nghị, Hai Bà Trưng, Hà Nội</span></div></div>
@@ -42,13 +55,19 @@
     
       <a style="position: absolute; top: 30px; right: 30px; z-index: 999 ; " @if(!empty(Cookie::get('name'))) href="{{url('/'.Cookie::get('name').'/giohang')}}" @else href="#" @endif title="Giỏ hàng">
         <i style="position: relative" id="carticon" class="fas fa-cart-plus">
-          @if(!empty(Cookie::get('sumcart')))
-          <span style="font-size: 16px;width: 20px; height: 20px; text-align: center; line-height: 16px; background-color: #b78a62; border: white solid 1px ;border-radius: 32px;position: absolute; top: -1px; right: -4px;: 0;" id="cartbuy">{{Cookie::get('sumcart')}}</span>
-          @endif
+          
+          <span style="font-size: 16px;width: 20px; height: 20px; text-align: center; line-height: 16px; background-color: #b78a62; border: white solid 1px ;border-radius: 32px;position: absolute; top: -1px; right: -4px;: 0;" id="cartbuy"></span>
+          
         </i>
         
         <script>
+          function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+          }
           $(document).ready(function(){
+            
             $('#carticon').on({
               mouseenter: function() {
                 $('#carticon').removeClass('fa-cart-plus');
@@ -61,6 +80,7 @@
                 $('#carticon').css('border-bottom', '');
               }
             });
+            $('#cartbuy').text(getCookie('sumcart'));
           });
         </script>
       </a>

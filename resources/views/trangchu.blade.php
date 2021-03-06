@@ -1,3 +1,5 @@
+@inject('Pages', 'App\Http\Controllers\PagesController')
+
 @extends('struct')
 @section('title', 'Trang chủ: website bán đồng hồ chất lượng cao donghoso.xyz')
 @section('addcss')
@@ -10,7 +12,10 @@
 
 @section('content')
 
-<div class="pages-body main-container">
+<div class="pages-body main-container position-relative">
+  <div class="alert alert-success fade hidden">Thành công!</div>
+  <div class="alert alert-danger fade hidden">Thất bại!</div>
+  
   <div id="nav-bar-slides container-item" class="pl-0 pr-0 shadow-lg">
     <div id="carousel1" class="carousel" data-flickity='{"autoPlay": 4000, "pageDots": false, "contain": true, "draggable":true, "wrapAround": true, "pauseAutoPlayOnHover" : true}'>
         @if(!empty($carousel))
@@ -58,11 +63,47 @@
                     <div class="card-footer text-center">
                       <h6 class="card-title font-weight-bold">{{$sanphamhot[$j]->ten_sp}}</h6>
                       @if ($sanphamhot[$j]->gia_sau_sale != NULL)
-                        <p class="sp_gia font-weight-normal text-dark"><del>{{$sanphamhot[$j]->gia_sp}}</del><span>&emsp;{{$sanphamhot[$j]->gia_sau_sale}}</span> ₫</p>
+                        <p class="sp_gia font-weight-normal text-dark">
+                          <del>
+                              {{$Pages->maskmonney($sanphamhot[$j]->gia_sp)}}₫
+                          </del>
+                          <span>
+                            &emsp;{{$Pages->maskmonney($sanphamhot[$j]->gia_sau_sale)}}₫
+                          </span>
+                        </p>
                       @else
-                        <p class="sp_gia font-weight-normal text-dark"><span>{{$sanphamhot[$j]->gia_sp}}</span> ₫</p>
+                        <p class="sp_gia font-weight-normal text-dark">
+                          <span>
+                            {{$Pages->maskmonney($sanphamhot[$j]->gia_sp)}}₫
+                          </span>
+                        </p>
                       @endif
-                      <button class="sp_btn_buy ">MUA NGAY</button>
+                        <button class="sp_btn_buy" id="{{$sanphamhot[$j]->id_sp}}">MUA NGAY</button>
+                        <script>
+                          $(document).ready(function(){
+                            var buttonBuy = $('.sp_btn_buy');
+                            buttonBuy.click(function(){
+                              var id = buttonBuy.attr('id');
+                              var d="";
+                              $.post(
+                                "{{url('/buy')}}"+ "/" + id,
+                                {
+                                  "_token": "{{ csrf_token() }}"
+                                }
+                              ).done(function(data){
+                                d = data;
+                                $(".alert-success").fadeTo(1000, 500).fadeOut();
+                                var sumcart = $('#cartbuy').text();
+                                $('#cartbuy').text((parseInt(sumcart) + 1));
+                              });
+
+                              if(d==undefined)
+                                {
+                                  $(".alert-danger").fadeTo(1000, 500).fadeOut();
+                                }
+                            });
+                          });
+                        </script>
                     </div>
                   </div>
                 @endfor
@@ -151,9 +192,20 @@
                     <div class="card-footer text-center">
                       <h6 class="card-title font-weight-bold">{{$sanphamnew[$j]->ten_sp}}</h6>
                       @if ($sanphamhot[$j]->gia_sau_sale != NULL)
-                        <p class="sp_gia font-weight-normal text-dark"><span>{{$sanphamnew[$j]->gia_sau_sale}}</span> ₫</p>
+                        <p class="sp_gia font-weight-normal text-dark">
+                          <del>
+                              {{$Pages->maskmonney($sanphamnew[$j]->gia_sp)}}₫
+                          </del>
+                          <span>
+                            &emsp;{{$Pages->maskmonney($sanphamnew[$j]->gia_sau_sale)}}₫
+                          </span>
+                        </p>
                       @else
-                        <p class="sp_gia font-weight-normal text-dark"><span>{{$sanphamnew[$j]->gia_sp}}</span> ₫</p>
+                        <p class="sp_gia font-weight-normal text-dark">
+                          <span>
+                            {{$Pages->maskmonney($sanphamnew[$j]->gia_sp)}}₫
+                          </span>
+                        </p>
                       @endif
                       <button class="sp_btn_buy ">MUA NGAY</button>
                     </div>
@@ -200,9 +252,19 @@
                     <div class="card-footer text-center">
                       <h6 class="card-title font-weight-bold">{{$sanphamsale[$j]->ten_sp}}</h6>
                       @if ($sanphamsale[$j]->gia_sau_sale != NULL)
-                        <p class="sp_gia font-weight-normal text-dark"><span>{{$sanphamsale[$j]->gia_sau_sale}}</span> ₫</p>
+                        <p class="sp_gia font-weight-normal text-dark">
+                          <del>
+                              {{$Pages->maskmonney($sanphamsale[$j]->gia_sp)}}₫
+                          </del>
+                          <span>
+                            &emsp;{{$Pages->maskmonney($sanphamsale[$j]->gia_sau_sale)}}₫
+                          </span>
+                        </p>
                       @else
-                        <p class="sp_gia font-weight-normal text-dark"><span>{{$sanphamsale[$j]->gia_sp}}</span> ₫</p>
+                        <span>
+                          &emsp;{{$Pages->maskmonney($sanphamsale[$j]->gia_sau_sale)}}₫
+                        </span>
+                      </p>
                       @endif
                       <button class="sp_btn_buy ">MUA NGAY</button>
                     </div>
@@ -233,20 +295,24 @@
     </div>
   </div>
   @if (!empty($baiviet))
-    <div class="container-item card shadow-lg">
-      <div id="baiviet_div" style="position: relative">
-        @for ($j = 0; $j < 3 && $j < count($baiviet)+1; $j++)
-          <div id="baiviet_cell" class="position-relative" style="background-image: url({{asset('/images/.$baiviet[$j]->image')}});">
-            <div class="position-absolute">
-              <span id="baiviet_cell_text">{{$baiviet[$j]}}</span>
+    <div class="container-item card bg-transparent border-0">
+      <div id="baiviet_div" class="position-relative">
+        @for ($j = 0; $j < 3 && $j < count($baiviet); $j++)
+        @if($j!=2)
+          <div id="baiviet_cell" class="position-relative float-left shadow" style="background-image: url({!!asset('/images/'.$baiviet[$j]->hinhanh_demo)!!})">
+            <div id="baiviet_cell_text">
+              <span>{{$baiviet[$j]->tieude}}</span>
+              <br><br><button id="btn_xemthem_carousel" type="button" class="btn btn-outline-light  text-white position-absolute" style="bottom: 10%; left: 10%">Đọc bài viết...</button>
             </div>
           </div>
-          @if ($j==2)
-            <div id="baiviet_cell_last" class="position-relative" style="background-image: url({{asset('/images/.$baiviet[$j+1]->image')}});">
-              <div class="position-absolute">
-              <span id="baiviet_cell_text">{{$baiviet[$j+1]}}</span>
-            </div>
-          @endif
+        @else
+        <div id="baiviet_cell_last" class="position-relative float-left shadow" style="background-image: url({!!asset('/images/'.$baiviet[$j]->hinhanh_demo)!!})">
+          <div id="baiviet_cell_text">
+            <span>{{$baiviet[$j]->tieude}}</span>
+            <br><br><button id="btn_xemthem_carousel" type="button" class="btn btn-outline-light  text-white position-absolute" style="bottom: 10%; left: 10%">Đọc bài viết...</button>
+          </div>
+        </div>
+        @endif
         @endfor
       </div>
     </div>

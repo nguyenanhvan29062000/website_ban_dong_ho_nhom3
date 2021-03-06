@@ -184,3 +184,18 @@
 .ulfooter li span:hover{
   color: #af7d51;
 }
+.spinner{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  line-height: 100%;
+  background-color: rgb(154, 154, 154, 0.2);
+  z-index: 99999;
+}
+.spinner-border{
+  margin: 0;
+  position: absolute;
+  top: 45%;
+  position: absolute;
+  -ms-transform: translateY(-50%);
+}

@@ -36,3 +36,8 @@ Route::get('/logout', 'PagesController@logout');
 //POST
 Route::post('login', 'PagesController@login');
 Route::post('signup', 'PagesController@signup');
+
+Route::post('/buy/{id}', 'PagesController@btnBuy');
+Route::post('/home/delgiohang', 'DatabasesController@delGioHang');
+Route::post('/home/giohang/btnleft', 'DatabasesController@btnLeftGioHang');
+Route::post('/home/giohang/btnright', 'DatabasesController@btnRightGioHang');
