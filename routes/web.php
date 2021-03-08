@@ -45,3 +45,5 @@ Route::post('/buy/{id}', 'PagesController@btnBuy');
 Route::post('/home/delgiohang', 'DatabasesController@delGioHang');
 Route::post('/home/giohang/btnleft', 'DatabasesController@btnLeftGioHang');
 Route::post('/home/giohang/btnright', 'DatabasesController@btnRightGioHang');
+Route::post('/home/giohang/buyone', 'PagesController@buyone');
+Route::post('/home/giohang/buyall', 'PagesController@buyall');

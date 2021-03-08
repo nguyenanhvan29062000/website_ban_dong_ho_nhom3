@@ -131,4 +131,28 @@ class PagesController extends Controller
         }
         $this->checkcart();
     }
+    public function buyone(Request $request)
+    {
+        $id = $request['id_sp'];
+        $name = Cookie::get('name');
+        $info = DB::select('select * from tgiohang where name = ? and id_sp = ?', [$name, $id]);
+        foreach($info as $value)
+        {
+            print_r($value);
+        }
+    }
+    public function buyall(Request $request)
+    {
+        $id = $request['id_sp'];
+        $name = Cookie::get('name');
+        foreach($id as $id_sp)
+        {
+            $info = DB::select('select * from tgiohang where name = ? and id_sp = ?', [$name, $id_sp]);
+            foreach($info as $value)
+            {
+                print_r($value);
+                echo "<br>";
+            }
+        }
+    }
 }
