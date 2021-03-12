@@ -3,7 +3,6 @@
 @extends('struct')
 @section('title', 'Trang chủ: website bán đồng hồ chất lượng cao donghoso.xyz')
 @section('addcss')
-  @yield('struct')
   <link rel="stylesheet" href="{!! asset('/css/trangchu.css') !!}">
   <!-- import flickity (Thanh trượt giống Carousel nhưng pro hơn!) -->
   <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">

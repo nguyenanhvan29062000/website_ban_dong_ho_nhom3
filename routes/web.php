@@ -21,16 +21,12 @@ Route::get('/home/gioithieu', function()
 {
     return view('gioithieu');
 });
-Route::get('/home/dongho/{gender}', function($gender){
-    if($gender=='nam'||$gender=='nu') return view('dongho', compact('gender'));
-    else abort(404);
-});
+Route::get('/home/dongho/{gender}/{page}', 'PagesController@gender');
+Route::post('/home/dongho/{gender}/{page}', 'PagesController@gender');
 Route::get('/dongho/{id}/chitiet', function ($id) {
     return view('chitetsanpham', compact('id'));
 });
-Route::get('/home/dongho/timkiem', function () {
-    return view('timkiem');
-});
+Route::post('/home/dongho/timkiem', 'PagesController@timkiembyname');
 Route::get('/home/lienhe', function()
 {
     return view('lienhe');
@@ -47,3 +43,5 @@ Route::post('/home/giohang/btnleft', 'DatabasesController@btnLeftGioHang');
 Route::post('/home/giohang/btnright', 'DatabasesController@btnRightGioHang');
 Route::post('/home/giohang/buyone', 'PagesController@buyone');
 Route::post('/home/giohang/buyall', 'PagesController@buyall');
+
+Route::post('/home/dongho/fillter', 'PagesController@fillter');

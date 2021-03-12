@@ -93,13 +93,14 @@
       </li>
       <li class="nav-item btn-block">
         <div class="s002">
-          <form>
+          <form method="POST" action="{{url('/home/dongho/timkiem')}}">
+            @csrf
             <div class="inner-form">
               <div class="input-field first-wrap">
-                <input id="search" type="text" placeholder="Tìm kiếm sản phẩm?" />
+                <input name="keywords" id="search" type="text" placeholder="Tìm kiếm sản phẩm?" value="@if(!empty($key)){{$key}}@endif" />
               </div>
               <div class="input-field fifth-wrap">
-                <button class="btn-search" type="button">Tìm kiếm</button>
+                <button class="btn-search" type="submit">Tìm kiếm</button>
               </div>
             </div>
           </form>
@@ -138,10 +139,10 @@
                       <a id="gioithieupage" class="nav-link" href="{{url('/home/gioithieu')}}">GIỚI THIỆU</a>
                   </li>
                   <li class="nav-item navbar-brand d-flex justify-content-center">
-                      <a id="dhnampage" class="nav-link" href="{{url('/home/dongho/nam')}}">ĐỒNG HỒ NAM</a>
+                      <a id="dhnampage" class="nav-link" href="{{url('/home/dongho/nam/1')}}">ĐỒNG HỒ NAM</a>
                   </li>
                   <li class="nav-item navbar-brand d-flex justify-content-center">
-                      <a id="dhnupage" class="nav-link" href="{{url('/home/dongho/nu')}}">ĐỒNG HỒ NỮ</a>
+                      <a id="dhnupage" class="nav-link" href="{{url('/home/dongho/nu/1')}}">ĐỒNG HỒ NỮ</a>
                   </li>
                   <li class="nav-item navbar-brand d-flex justify-content-center">
                     <a id="lienhepage" class="nav-link" href="{{url('/home/lienhe')}}">LIÊN HỆ</a>

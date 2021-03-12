@@ -116,6 +116,7 @@ class PagesController extends Controller
             return $first.'.'.$second.'.'.$last;
         }
     }
+    //
     public function btnBuy(Request $request)
     {   
         $id = $request->route('id');
@@ -154,5 +155,142 @@ class PagesController extends Controller
                 echo "<br>";
             }
         }
+    }
+    //
+    public function gender(Request $request)
+    {
+        $gender = $request->route('gender');
+        $page = $request->route('page');
+        if($gender == 'nam' || $gender = 'nu')
+        {
+            $sanpham = DB::table('tloaisp')->select('tsanpham.id_sp', 'ten_sp', 'gia_sp', 'gia_sau_sale', 'hang_sx', 'nam_sx', 'image')->join('tsanpham', 'tloaisp.id_sp', '=', 'tsanpham.id_sp')->leftJoin('tgiamgia', 'tsanpham.id_sp', '=', 'tgiamgia.id_sp')->where('gioi_tinh', $gender)->orderBy('tsanpham.id_sp', 'desc')->get();
+            //mỗi trang chứa 30 sp
+            $allsp = count($sanpham);
+            if($allsp%30 == 0)
+            {
+                $numpage = (int)($allsp/30) ;
+            }
+            else 
+            {
+                $numpage = (int)($allsp/30) + 1;
+            }
+            $sp_in_page = 0;
+            if($page == $numpage && $allsp%30 != 0) $sp_in_page = $allsp%30;
+            elseif($page == $numpage && $allsp%30 == 0) $sp_in_page = 30;
+            elseif($page < $numpage) $sp_in_page = 30;
+            if($page > 0 && $page <= $numpage)
+            {
+                if($allsp!=0)
+                {
+                    for($i = $page * 30 - 30, $j=0; $i < $page * 30&&$j<$sp_in_page; $i++, $j++)
+                    { 
+                        $listsanpham[$j] = $sanpham[$i];
+                    }
+                    $from = NULL;
+                    $to = NULL;
+                    $hangsx = NULL;
+                    $year = NULL;
+                    if(!empty($request->from)) $from = $request->from;
+                    if(!empty($request->to)) $to = $request->to;
+                    if(!empty($request->hangsx)) $hangsx = $request->hangsx;
+                    if(!empty($request->year)) $year = $request->year;
+                    $listsanpham = $this->fillter($listsanpham, $request);
+                    return view('dongho', compact('listsanpham','gender', 'from', 'to', 'hangsx', 'year'));
+                }
+                else
+                {
+                    echo "Khong co san pham!";
+                }
+            }
+            else
+            {
+                return "Page notfound!";
+            }
+        }
+        else
+        {
+            return "Page notfound!";
+        }
+    }
+    public function timkiembyname(Request $request)
+    {
+        $key = $request['keywords'];
+        $from = NULL;
+        $to = NULL;
+        $hangsx = NULL;
+        $year = NULL;
+        if(!empty($request->from)) $from = $request->from;
+        if(!empty($request->to)) $to = $request->to;
+        if(!empty($request->hangsx)) $hangsx = $request->hangsx;
+        if(!empty($request->year)) $year = $request->year;
+        $listsanpham = DB::table('tsanpham')->select('tsanpham.id_sp', 'ten_sp', 'gia_sp', 'gia_sau_sale', 'hang_sx', 'nam_sx', 'image')->join('tloaisp', 'tsanpham.id_sp', '=', 'tloaisp.id_sp')->leftJoin('tgiamgia', 'tsanpham.id_sp', '=', 'tgiamgia.id_sp')->where('ten_sp','like','%'.$key.'%')->orderBy('ten_sp')->get();
+        $listsanpham = $this->fillter($listsanpham, $request);
+        return view('dongho', compact('listsanpham', 'key', 'from', 'to', 'hangsx', 'year'));
+    }
+
+    public function fillter($listsanpham, $request)
+    {
+        
+        $gia = !empty($request->from) || !empty($request->to);
+        $hang = !empty($request->hangsx);
+        $year = !empty($request->year);
+        if($gia)
+        {
+            if(empty($request->to))
+            {
+                $newlist = array();
+                foreach($listsanpham as $sanpham)
+                {
+                    if($request->from <= $sanpham->gia_sp)
+                    {
+                        $newlist[count($newlist)] = $sanpham;
+                    }
+                }
+                $listsanpham = $newlist;
+            }
+            else{
+                $newlist = array();
+                foreach($listsanpham as $sanpham)
+                {
+                    if($request->from <= $sanpham->gia_sp && $sanpham->gia_sp <= $request->to)
+                    {
+                        $newlist[count($newlist)] = $sanpham;
+                    }
+                }
+                $listsanpham = $newlist;
+            }
+        }
+        if($hang)
+        {
+            if($request->hangsx!='all')
+            {
+                $newlist = array();
+                foreach($listsanpham as $sanpham)
+                {
+                    if($sanpham->hang_sx == $request->hangsx)
+                    {
+                        $newlist[count($newlist)] = $sanpham;
+                    }
+                }
+                $listsanpham = $newlist;
+            }
+        }
+        
+        if($year)
+        {
+            if($request->year != 'all')
+            {
+                $newlist = array();
+                foreach($listsanpham as $sanpham)
+                {
+                    if($sanpham->nam_sx == $request->year)
+                    {
+                        $newlist[count($newlist)] = $sanpham;
+                    }
+                }
+                $listsanpham = $newlist;
+            }
+        }
+        return $listsanpham;
     }
 }

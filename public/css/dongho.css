@@ -1,0 +1,28 @@
+.main-container{
+    padding: 0 19%;
+}
+.pages-body {
+    margin-top: 30px;
+}
+.sanpham{
+    width: 24%;
+    margin:  0.5%;
+}
+.sp_btn_buy{
+    background-color: #b78a62;
+    padding: 7px 14px;
+    border: none;
+    font-weight: bold;
+    color: white;
+}
+.sp_btn_buy:hover{
+    background-color: #b7b7b7;
+    border: none;
+}
+#myInput {
+    padding: 20px;
+    margin-top: -6px;
+    border: 0;
+    border-radius: 0;
+    background: #f1f1f1;
+  }
