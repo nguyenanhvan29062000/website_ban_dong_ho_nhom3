@@ -12,8 +12,7 @@
 @section('content')
 
 <div class="pages-body main-container position-relative">
-  <div class="alert alert-success fade hidden">Thành công!</div>
-  <div class="alert alert-danger fade hidden">Thất bại!</div>
+  
   
   <div id="nav-bar-slides container-item" class="pl-0 pr-0 shadow-lg">
     <div id="carousel1" class="carousel" data-flickity='{"autoPlay": 4000, "pageDots": false, "contain": true, "draggable":true, "wrapAround": true, "pauseAutoPlayOnHover" : true}'>
@@ -91,30 +90,6 @@
             @endif
           @endfor
         @endif
-        <script>
-          $(document).ready(function(){
-            $('.sp_btn_buy').click(function(){
-              var id = $(this).attr('id');
-              var d="";
-              $.post(
-                "{{url('/buy')}}"+ "/" + id,
-                {
-                  "_token": "{{ csrf_token() }}"
-                }
-              ).done(function(data){
-                d = data;
-                $(".alert-success").fadeTo(1000, 500).fadeOut();
-                var sumcart = $('#cartbuy').text();
-                $('#cartbuy').text((parseInt(sumcart) + 1));
-              });
-
-              if(d==undefined)
-                {
-                  $(".alert-danger").fadeTo(1000, 500).fadeOut();
-                }
-            });
-          });
-        </script>
       </div>
       <a id="hotleft" href="#prev" style="position: absolute; top: 30%">
         <i class="fas fa-chevron-circle-left next-btn shadow"></i>
@@ -303,7 +278,7 @@
     </div>
   </div>
   @if (!empty($baiviet))
-    <div class="container-item card bg-transparent border-0">
+    <div class="container-item card bg-transparent border-0" style="width: 102%; margin-left: -1%">
       <div id="baiviet_div" class="position-relative">
         @for ($j = 0; $j < 3 && $j < count($baiviet); $j++)
         @if($j!=2)

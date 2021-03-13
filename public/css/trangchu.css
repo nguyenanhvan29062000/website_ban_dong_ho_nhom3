@@ -159,12 +159,6 @@
     width: 32%;
     height: 100%;
 }
-.alert{
-    position: fixed;
-    top: 40%;
-    left: 48%;
-    z-index: 9999;
-}
 @media screen and (max-width: 1600px)
 {
     .main-container{

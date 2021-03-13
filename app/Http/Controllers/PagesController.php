@@ -164,38 +164,38 @@ class PagesController extends Controller
         if($gender == 'nam' || $gender = 'nu')
         {
             $sanpham = DB::table('tloaisp')->select('tsanpham.id_sp', 'ten_sp', 'gia_sp', 'gia_sau_sale', 'hang_sx', 'nam_sx', 'image')->join('tsanpham', 'tloaisp.id_sp', '=', 'tsanpham.id_sp')->leftJoin('tgiamgia', 'tsanpham.id_sp', '=', 'tgiamgia.id_sp')->where('gioi_tinh', $gender)->orderBy('tsanpham.id_sp', 'desc')->get();
-            //mỗi trang chứa 30 sp
+            $from = NULL;
+            $to = NULL;
+            $hangsx = NULL;
+            $year = NULL;
+            if(!empty($request->from)) $from = $request->from;
+            if(!empty($request->to)) $to = $request->to;
+            if(!empty($request->hangsx)) $hangsx = $request->hangsx;
+            if(!empty($request->year)) $year = $request->year;
+            $sanpham = $this->fillter($sanpham, $request);
+            //mỗi trang chứa 16 sp
             $allsp = count($sanpham);
-            if($allsp%30 == 0)
+            if($allsp%16 == 0)
             {
-                $numpage = (int)($allsp/30) ;
+                $numpage = (int)($allsp/16) ;
             }
             else 
             {
-                $numpage = (int)($allsp/30) + 1;
+                $numpage = (int)($allsp/16) + 1;
             }
             $sp_in_page = 0;
-            if($page == $numpage && $allsp%30 != 0) $sp_in_page = $allsp%30;
-            elseif($page == $numpage && $allsp%30 == 0) $sp_in_page = 30;
-            elseif($page < $numpage) $sp_in_page = 30;
+            if($page == $numpage && $allsp%16 != 0) $sp_in_page = $allsp%16;
+            elseif($page == $numpage && $allsp%16 == 0) $sp_in_page = 16;
+            elseif($page < $numpage) $sp_in_page = 16;
             if($page > 0 && $page <= $numpage)
             {
                 if($allsp!=0)
                 {
-                    for($i = $page * 30 - 30, $j=0; $i < $page * 30&&$j<$sp_in_page; $i++, $j++)
-                    { 
+                    for($i = $page * 16 - 16, $j=0; $i < $page * 16&&$j<$sp_in_page; $i++, $j++)
+                      { 
                         $listsanpham[$j] = $sanpham[$i];
                     }
-                    $from = NULL;
-                    $to = NULL;
-                    $hangsx = NULL;
-                    $year = NULL;
-                    if(!empty($request->from)) $from = $request->from;
-                    if(!empty($request->to)) $to = $request->to;
-                    if(!empty($request->hangsx)) $hangsx = $request->hangsx;
-                    if(!empty($request->year)) $year = $request->year;
-                    $listsanpham = $this->fillter($listsanpham, $request);
-                    return view('dongho', compact('listsanpham','gender', 'from', 'to', 'hangsx', 'year'));
+                    return view('dongho', compact('listsanpham','gender', 'from', 'to', 'hangsx', 'year', 'numpage', 'page'));
                 }
                 else
                 {

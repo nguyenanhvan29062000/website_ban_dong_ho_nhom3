@@ -155,11 +155,11 @@
                   <script>
                     $(document).ready(function(){
                       var pathname = window.location.pathname;
-                      if(pathname=="/home") {$('#homepage').css("color","#b78a62"); $('#homepage').css("border-bottom", "solid 1px #b78a62");}
-                      else if(pathname=="/home/gioithieu") {$('#gioithieupage').css("color","#b78a62"); $('#gioithieupage').css("border-bottom", "solid 1px #b78a62");}
-                      else if(pathname=="/home/dongho/nam") {$('#dhnampage').css("color","#b78a62");$('#dhnampage').css("border-bottom", "solid 1px #b78a62");}
-                      else if(pathname=="/home/dongho/nu") {$('#dhnupage').css("color","#b78a62");$('#dhnupage').css("border-bottom", "solid 1px #b78a62");}
-                      else if(pathname=="/home/lienhe") {$('#lienhepage').css("color","#b78a62");$('#lienhepage').css("border-bottom", "solid 1px #b78a62");}
+                      if(window.location.href== "{{url('/home')}}") {$('#homepage').css("color","#b78a62"); $('#homepage').css("border-bottom", "solid 1px #b78a62");}
+                      else if(pathname.indexOf("/home/gioithieu") > -1) {$('#gioithieupage').css("color","#b78a62"); $('#gioithieupage').css("border-bottom", "solid 1px #b78a62");}
+                      else if(pathname.indexOf("/home/dongho/nam/") > -1) {$('#dhnampage').css("color","#b78a62");$('#dhnampage').css("border-bottom", "solid 1px #b78a62");}
+                      else if(pathname.indexOf("/home/dongho/nu/") > -1) {$('#dhnupage').css("color","#b78a62");$('#dhnupage').css("border-bottom", "solid 1px #b78a62");}
+                      else if(pathname.indexOf("/home/lienhe") > -1) {$('#lienhepage').css("color","#b78a62");$('#lienhepage').css("border-bottom", "solid 1px #b78a62");}
                     })
                   </script>
                   </ul>
@@ -228,7 +228,26 @@
     </div>
 </div>
 @yield('content')
-<hr style="box-shadow: 0 2px 0 #b78a62; width: 100%"">
+<div class="alert alert-success fade hidden">Thành công!</div>
+<div class="alert alert-danger fade hidden">Thất bại!</div>
+<script>
+  $(document).ready(function(){
+      $('.sp_btn_buy').click(function(){
+      var id = $(this).attr('id');
+      $.post(
+          "{{url('/buy')}}"+ "/" + id,
+          {
+          "_token": "{{ csrf_token() }}"
+          }
+      ).done(function(data){
+          $(".alert-success").fadeTo(1000, 500).fadeOut();
+          var sumcart = $('#cartbuy').text();
+          $('#cartbuy').text((parseInt(sumcart) + 1));
+      });
+      });
+  });
+</script>
+<hr style="box-shadow: 0 2px 0 #b78a62; width: 100%">
 <div class="footer">
   <div class="container" style="padding-top: 50px">
     <div class="row">

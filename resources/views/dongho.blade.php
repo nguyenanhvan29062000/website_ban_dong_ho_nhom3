@@ -6,14 +6,14 @@
 @endsection
 @section('content')
 <div class="pages-body main-container">
-    <div class="card">
-        <div class="card-body bg-white pt-2 pb-2">
+    <div class="card shadow-lg">
+        <div class="card-body bg-light pt-2 pb-2">
             <form action="" method="POST">
                 @csrf
                 <input style="display: none" type="text" name="keywords" value="@if(!empty($key)){{$key}}@endif" id="">
                 <input style="display: none" type="text" name="gender" value="@if(!empty($gender)){{$gender}}@endif" id="">
                 <div class="float-left">
-                    <span class="float-left btn">Giá:</span> 
+                    <span class="float-left btn" style="font-weight: bold">Giá:</span> 
                     <input min="0" class="form-control float-left w-25 ml-3" type="number" name="from" id="" value="@if(!empty($from)){{$from}}@endif" placeholder="Từ">
                     <input min="0" class="form-control float-left w-25 ml-3" type="number" name="to" value="@if(!empty($to)){{$to}}@endif" id="" placeholder="Đến">
                 </div>
@@ -47,7 +47,7 @@
                 <input class="float-right btn btn-secondary" type="submit" value="Lọc sản phẩm">
             </form>
         </div>
-        <div class="shadow-lg card-body bg-white">
+        <div class="shadow-sm card-body bg-white">
             @if(!empty($listsanpham))
                 @foreach($listsanpham as $value)
                     <div  class="card shadow-sm float-left sp_card position-relative sanpham">
@@ -81,8 +81,31 @@
                 @endforeach
             @endif
         </div>
+            @if(!empty($numpage) && $numpage <= 5)
+            <ul class="pagination d-flex justify-content-center pt-3">
+                @for($i = 1; $i <= $numpage; $i++)
+                    @if($i == $page)
+                        <li class="page-item active"><a class="page-link" href="{{url('/home/dongho/'.$gender.'/'.$i)}}">{{$i}}</a></li> 
+                    @else
+                        <li class="page-item"><a class="page-link" href="{{url('/home/dongho/'.$gender.'/'.$i)}}">{{$i}}</a></li> 
+                    @endif
+                @endfor
+            @else
+                @if(!empty($numpage) && $numpage > 5)
+                    @if($page > 1)
+                        <li class="page-item"><a class="page-link" href="{{url('/home/dongho/'.$gender.'/'.$page--)}}">{{$page-1}}</a></li>
+                    @endif
+                    <li class="page-item active"><a class="page-link" href="{{url('/home/dongho/'.$gender.'/'.$page)}}">{{$page}}</a></li>
+                    <li class="page-item"><a class="page-link" href="{{url('/home/dongho/'.$gender.'/'.$page++)}}">{{$page+1}}</a></li>
+                    ...
+                    <li class="page-item"><a class="page-link" href="{{url('/home/dongho/'.$gender.'/'.$numpage)}}">{{$numpage}}</a></li>
+                @endif
+            </ul>
+            @endif
+
     </div>
 </div>
     {{-- Write code in here! --}}
+
     
 @endsection

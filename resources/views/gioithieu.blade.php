@@ -40,7 +40,7 @@
         
     </div></div>
     <div class="col medium-8 small-12 large-6" data-animate="fadeInRight" data-animated="true"><div class="col-inner">
-    <h2 class="title">Giới thiệu về Watch Mona</h2>
+    <h2 class="title">Giới thiệu về DONGHOSO</h2>
     <p>“Cùng với sự phát triển không ngừng của thời trang thế giới, rất nhiều thương hiệu cho ra đời những mẫu đồng hồ nam chính hãng đa dạng về phong cách, kiểu dáng, màu sắc, kích cỡ… Một chiếc đồng hồ nam cao cấp chính hãng khắc họa một giá trị đích thực khi nói đến phụ kiện xa xỉ dành cho phái mạnh. Hiện nay, đồng hồ là phụ kiện thời trang thiết yếu đối với những người đàn ông hiện đại ngày nay. Trên cổ tay của những người đàn ông thành đạt luôn dành vị trí cho một chiếc đồng hồ nam cao cấp.”</p>
     </div></div>
     
@@ -450,57 +450,6 @@
     #section_59926485 {
       padding-top: 0px;
       padding-bottom: 0px;
-    }
-    </style>
-        </section>
-        
-        <section class="section sec_about_portfolio dark has-parallax" id="section_1907018448">
-            <div class="bg section-bg fill bg-fill parallax-active bg-loaded" data-parallax-container=".section" data-parallax-background="" data-parallax="-6" style="height: 539.571px; transform: translate3d(0px, 51.96px, 0px); backface-visibility: hidden;">
-    
-                
-                <div class="section-bg-overlay absolute fill"></div>
-                
-    
-            </div><!-- .section-bg -->
-    
-            <div class="section-content relative">
-                
-    <div class="gap-element clearfix" style="display:block; height:auto; padding-top:50px"></div>
-    <div class="row" id="row-1865596917">
-    <div class="col medium-3 small-6 large-3"><div class="col-inner text-center">
-    <h2 class="title"><span class="counter counter-default">1280</span></h2>
-    <p>SẢN PHẨM</p>
-    </div></div>
-    <div class="col medium-3 small-6 large-3"><div class="col-inner text-center">
-    <h2 class="title"><span class="counter counter-default">8</span></h2>
-    <p>GIẢI THƯỞNG</p>
-    </div></div>
-    <div class="col medium-3 small-6 large-3"><div class="col-inner text-center">
-    <h2 class="title"><span class="counter counter-default">3898</span></h2>
-    <p>KHÁCH HÀNG HÀI LÒNG</p>
-    </div></div>
-    <div class="col medium-3 small-6 large-3"><div class="col-inner text-center">
-    <h2 class="title"><span class="counter counter-default">25</span></h2>
-    <p>CHI NHÁNH CỬA HÀNG</p>
-    </div></div>
-    </div>
-            </div><!-- .section-content -->
-    
-            
-    <style scope="scope">
-    
-    #section_1907018448 {
-      padding-top: 40px;
-      padding-bottom: 40px;
-    }
-    #section_1907018448 .section-bg-overlay {
-      background-color: rgba(0, 0, 0, 0.7);
-    }
-    #section_1907018448 .section-bg.bg-loaded {
-      background-image: url(http://mauweb.monamedia.net/donghohaitrieu/wp-content/uploads/2019/07/banner-portfolio.jpg);
-    }
-    #section_1907018448 .section-bg {
-      background-position: 0% 45%;
     }
     </style>
         </section>

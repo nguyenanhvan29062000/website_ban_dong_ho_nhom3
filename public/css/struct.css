@@ -106,7 +106,11 @@
 .s002 form .inner-form .input-field.fifth-wrap .btn-search:hover {
   background: #af7d51;
 }
-
+.alert{
+  position: fixed;
+  top: 40%;
+  left: 48%;
+}
 @media screen and (max-width: 767px) {
   .s002 form .inner-form {
     -ms-flex-wrap: wrap;

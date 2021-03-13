@@ -31,7 +31,7 @@
                                         @csrf
                                         <div class="row shadow-lg bg-white" style="height: 200px; margin: 15px 0; border-radius: 10px">
                                             <div class="col-lg-4 d-flex justify-content-center pl-0 pr-0 ml-0 mr-0">
-                                                <img style="border-top-left-radius: 10px; border-bottom-left-radius: 10px" height="200px" src="{{asset('/images/'.$sanpham[$i][0]->image)}}" alt="">
+                                                <img height="200px" src="{{asset('/images/'.$sanpham[$i][0]->image)}}" alt="">
                                             </div>
                                             <div class="col-lg-7 pr-0 pl-0 border-left">
                                                 <div id="gh-cart-header" class="card-header">{{$sanpham[$i][0]->ten_sp}}</div>
