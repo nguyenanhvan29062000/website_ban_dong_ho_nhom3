@@ -37,7 +37,7 @@ class  AdminController extends Controller
     public function dashboard(Request $request)
     {
       $email = $request->email;
-      $pass  =  md5($request->pass);
+      $pass  =  $request->pass;
 
    $result = DB::select("select * from admin where admin_email =? and admin_password = ?", [$email, $pass]);
       if(!empty($result))
