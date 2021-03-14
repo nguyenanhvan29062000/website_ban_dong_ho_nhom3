@@ -85,9 +85,9 @@
             <ul class="pagination d-flex justify-content-center pt-3">
                 @for($i = 1; $i <= $numpage; $i++)
                     @if($i == $page)
-                        <li class="page-item active"><a class="page-link" href="{{url('/home/dongho/'.$gender.'/'.$i)}}">{{$i}}</a></li> 
+                        <li class="page-item active"><a style="background-color: #b78a62; border-color: #b78a62" class="page-link" href="{{url('/home/dongho/'.$gender.'/'.$i)}}">{{$i}}</a></li> 
                     @else
-                        <li class="page-item"><a class="page-link" href="{{url('/home/dongho/'.$gender.'/'.$i)}}">{{$i}}</a></li> 
+                        <li class="page-item"><a style="color: #b78a62" class="page-link" href="{{url('/home/dongho/'.$gender.'/'.$i)}}">{{$i}}</a></li> 
                     @endif
                 @endfor
             @else
@@ -95,10 +95,10 @@
                     @if($page > 1)
                         <li class="page-item"><a class="page-link" href="{{url('/home/dongho/'.$gender.'/'.$page--)}}">{{$page-1}}</a></li>
                     @endif
-                    <li class="page-item active"><a class="page-link" href="{{url('/home/dongho/'.$gender.'/'.$page)}}">{{$page}}</a></li>
-                    <li class="page-item"><a class="page-link" href="{{url('/home/dongho/'.$gender.'/'.$page++)}}">{{$page+1}}</a></li>
+                    <li class="page-item active"><a style="background-color: #b78a62; border-color: #b78a62"  class="page-link" href="{{url('/home/dongho/'.$gender.'/'.$page)}}">{{$page}}</a></li>
+                    <li class="page-item"><a style="color: #b78a62" class="page-link" href="{{url('/home/dongho/'.$gender.'/'.$page++)}}">{{$page+1}}</a></li>
                     ...
-                    <li class="page-item"><a class="page-link" href="{{url('/home/dongho/'.$gender.'/'.$numpage)}}">{{$numpage}}</a></li>
+                    <li class="page-item"><a style="color: #b78a62" class="page-link" href="{{url('/home/dongho/'.$gender.'/'.$numpage)}}">{{$numpage}}</a></li>
                 @endif
             </ul>
             @endif
